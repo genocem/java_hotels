@@ -116,4 +116,3 @@ public class Adresse {
                 + "code postal: " + code_postal + "pays: " + pays + facultative;
     }
 }
-// 
