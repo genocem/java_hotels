@@ -15,6 +15,13 @@ public class Categorie {
     }
 
     public void setPrix(int prix) {
+        try {
+            if (prix <= 0) {
+                throw new Anomalie(1);
+            }
+        } catch (Anomalie e) {
+            System.out.println(e);
+        }
         this.prix = prix;
     }
 
@@ -47,10 +54,15 @@ public class Categorie {
     }
 
     public void setNombre_lits(int nombre_lits) {
-        this.nombre_lits = nombre_lits;
+        try {
+            if (prix <= 0) {
+                throw new Anomalie(1);
+            }
+            this.nombre_lits = nombre_lits;
+        } catch (Anomalie e) {
+            System.out.println(e);
+        }
     }
-    
-
 
     @Override
     public boolean equals(Object obj) {
@@ -73,6 +85,5 @@ public class Categorie {
             return false;
         return true;
     }
-
 
 }

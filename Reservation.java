@@ -10,13 +10,24 @@ public class Reservation {
     private Client client;
 
     public Reservation(Date date_res, Date deb_res, Date fin_res, Chambre chambre, Client client) {
-        num_res=num_res_total;
-        num_res_total++;
-        this.date_res = date_res;
-        this.deb_res = deb_res;
-        this.fin_res = fin_res;
-        this.chambre = chambre;
-        this.client = client;
+        try {
+            if (deb_res.compareTo(fin_res)>0) {
+                throw new Anomalie(3);
+            }
+            if (date_res.compareTo(deb_res)>0) {
+                throw new Anomalie(3);
+            }
+            num_res=num_res_total;
+            num_res_total++;
+            this.date_res = date_res;
+            this.deb_res = deb_res;
+            this.fin_res = fin_res;
+            this.chambre = chambre;
+            this.client = client;
+            
+        } catch (Anomalie e) {
+            System.out.println(e);
+        }
     }
 
     public Date getDeb_res() {
@@ -29,10 +40,6 @@ public class Reservation {
 
     public Date getFin_res() {
         return fin_res;
-    }
-
-    public void setFin_res(Date fin_res) {
-        this.fin_res = fin_res;
     }
 
     public Chambre getChambre() {
@@ -49,10 +56,6 @@ public class Reservation {
 
     public Date getDate_res() {
         return date_res;
-    }
-
-    public void setDate_res(Date date_res) {
-        this.date_res = date_res;
     }
 
     public Client getClient() {

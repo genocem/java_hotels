@@ -61,6 +61,16 @@ public class Hotel {
     public List<Chambre> getChambrelist() {
         return chambrelist;
     }
+    public void ajouter_chambre(Categorie categ, int etage){
+        try {
+            if (etage<0) {
+                throw new Anomalie(1);
+            }
+            getChambrelist().add(new Chambre(categ, etage));
+        } catch (Anomalie e) {
+            System.out.println(e);
+        }
 
+    }
 
 }

@@ -2,14 +2,16 @@ import java.util.List;
 
 public class Chambre {
     private int num_ch;
+    private static int num_ch_total=0;
     private Categorie categorie;
     private boolean occuper = false;
     private int etage;
     private List<Reservation> reservations;     
 
 
-    public Chambre(int num_ch, Categorie categorie, int etage) {
-        this.num_ch = num_ch;
+    public Chambre(Categorie categorie, int etage) {
+        num_ch = num_ch_total;
+        num_ch_total++;
         this.categorie = categorie;
         this.etage = etage;
     }
@@ -50,9 +52,6 @@ public class Chambre {
         return reservations;
     }
 
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
     public void inserer_res(int index,Reservation nouv_res){
         reservations.add(index,nouv_res);
     }
