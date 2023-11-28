@@ -109,7 +109,7 @@ public class Client {
         try {
 
             for (Chambre chambre : liste_Chambre) {
-                if (chambre.getCategorie() == categorie) {
+                if (chambre.getCategorie().equals(categorie)) {
                     boolean res = ajouter_Reservation_chambre(date_res, deb_res, fin_res, chambre, client);
                     if (res) {
                         return;
