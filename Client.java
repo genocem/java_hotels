@@ -122,10 +122,13 @@ public class Client {
             System.out.println(e);
         }
     }
-    public void supprimer_reservation(int num_res){
+
+    public void supprimer_reservation(int num_res) {
         for (Reservation reservation : getReservations()) {
-            if (num_res==reservation.getNum_res()) {
-                    reservation.getChambre().getReservations().remove(reservation.getChambre().getReservations().indexOf(reservation));
+            if (num_res == reservation.getNum_res()) {
+                reservation.getChambre().setOccuper(false);
+                reservation.getChambre().getReservations()
+                        .remove(reservation.getChambre().getReservations().indexOf(reservation));
                 getReservations().remove(getReservations().indexOf(reservation));
             }
         }
