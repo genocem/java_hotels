@@ -1,7 +1,8 @@
 import java.util.Date;
 
 public class Reservation {
-    private static int num_res=0;
+    private static int num_res_total=0;
+    private int num_res;
     private Date date_res;
     private Date deb_res;
     private Date fin_res;
@@ -9,7 +10,8 @@ public class Reservation {
     private Client client;
 
     public Reservation(Date date_res, Date deb_res, Date fin_res, Chambre chambre, Client client) {
-        num_res++;
+        num_res=num_res_total;
+        num_res_total++;
         this.date_res = date_res;
         this.deb_res = deb_res;
         this.fin_res = fin_res;
@@ -41,8 +43,8 @@ public class Reservation {
         this.chambre = chambre;
     }
 
-    public int getNum_res() {
-        return num_res;
+    public int getnum_res_total() {
+        return num_res_total;
     }
 
     public Date getDate_res() {
@@ -65,4 +67,13 @@ public class Reservation {
                 return true;
             return false;   
     }
+
+    public static int getNum_res_total() {
+        return num_res_total;
+    }
+
+    public int getNum_res() {
+        return num_res;
+    }
+    
 }

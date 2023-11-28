@@ -49,5 +49,30 @@ public class Categorie {
     public void setNombre_lits(int nombre_lits) {
         this.nombre_lits = nombre_lits;
     }
+    
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Categorie other = (Categorie) obj;
+        if (bain != other.bain)
+            return false;
+        if (douche != other.douche)
+            return false;
+        if (tele != other.tele)
+            return false;
+        if (nombre_lits != other.nombre_lits)
+            return false;
+        if (prix != other.prix)
+            return false;
+        return true;
+    }
+
 
 }

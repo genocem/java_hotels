@@ -67,51 +67,67 @@ public class Client {
         this.idClient = idClient;
     }
 
-    public void ajouter_Reservation(Hotel hotel, Date date_res, Date deb_res, Date fin_res, Chambre chambre,
+    public void ajouter_Reservation_process(Date date_res, Date deb_res, Date fin_res, Chambre chambre,
+            Client client, int index) {
+        Reservation nouv_res = new Reservation(date_res, deb_res, fin_res, chambre, client);
+        reservations.add(nouv_res);
+        chambre.inserer_res(index, nouv_res);
+        if (date_res == deb_res) {
+            chambre.setOccuper(true);
+        }
+    }
+
+    public boolean ajouter_Reservation_chambre(Date date_res, Date deb_res, Date fin_res, Chambre chambre,
             Client client) {
-        int index;
-        boolean succ_reservation = false;
-        try {
-            for (Chambre iChambre : hotel.getChambrelist()) {
-                if (iChambre.getReservations().size() == 0) {
-                    succ_reservation = true;
-                    Reservation nouv_res = new Reservation(date_res, deb_res, fin_res, chambre, client);
-                    reservations.add(nouv_res);
-                    iChambre.getReservations().add(nouv_res);
-                    if (date_res == deb_res) {
-                        iChambre.setOccuper(succ_reservation);
-                    }
-                }
-                index = 0;
-                for (Reservation iReservation : iChambre.getReservations()) {
-                    if (true) {
-                        succ_reservation = true;
-                        Reservation nouv_res = new Reservation(date_res, deb_res, fin_res, chambre, client);
-                        reservations.add(nouv_res);
-                        iChambre.inserer_res(index, nouv_res);
-                        if (date_res == deb_res) {
-                            iChambre.setOccuper(succ_reservation);
-                        }
-                    }
-                    if (iReservation.getFin_res().compareTo(deb_res) <= 0
-                            && iChambre.getReservations().get(index + 1).getDeb_res().compareTo(fin_res) >= 0) {
-                        succ_reservation = true;
-                        Reservation nouv_res = new Reservation(date_res, deb_res, fin_res, chambre, client);
-                        reservations.add(nouv_res);
-                        iChambre.inserer_res(index, nouv_res);
-                        if (date_res == deb_res) {
-                            iChambre.setOccuper(succ_reservation);
-                        }
-                        return;
-                    }
-                    index++;
+        // boolean succ_reservation = false;
+        List<Reservation> reserv_list = chambre.getReservations();
+        int size_list = reserv_list.size();
+        if (size_list == 0 || reserv_list.get(0).getDeb_res().compareTo(fin_res) >= 0) {
+            ajouter_Reservation_process(date_res, deb_res, fin_res, chambre, client, 0);
+            return true;
+
+        } else if (reserv_list.get(size_list - 1).getFin_res().compareTo(deb_res) <= 0) {
+            ajouter_Reservation_process(date_res, deb_res, fin_res, chambre, client, size_list - 1);
+            return true;
+
+        } else
+            for (int index = 0; index < size_list - 1; index++) {
+                // this will handle inserting between dates
+                if (reserv_list.get(index).getFin_res().compareTo(deb_res) <= 0
+                        && reserv_list.get(index + 1).getDeb_res().compareTo(fin_res) >= 0) {
+                    ajouter_Reservation_process(date_res, deb_res, fin_res, chambre, client, index + 1);
+                    return true;
                 }
             }
-            if (!succ_reservation) {
-                throw new Anomalie(0);
+        return false;
+    }
+
+    public void ajouter_Reservation_categorie(Hotel hotel, Date date_res, Date deb_res, Date fin_res,
+            Categorie categorie,
+            Client client) {
+        List<Chambre> liste_Chambre = hotel.getChambrelist();
+        try {
+
+            for (Chambre chambre : liste_Chambre) {
+                if (chambre.getCategorie() == categorie) {
+                    boolean res = ajouter_Reservation_chambre(date_res, deb_res, fin_res, chambre, client);
+                    if (res) {
+                        return;
+                    } else if (liste_Chambre.size() - 1 == liste_Chambre.indexOf(chambre)) {
+                        throw new Anomalie(0);
+                    }
+                }
             }
         } catch (Anomalie e) {
             System.out.println(e);
+        }
+    }
+    public void supprimer_reservation(int num_res){
+        for (Reservation reservation : getReservations()) {
+            if (num_res==reservation.getNum_res()) {
+                    reservation.getChambre().getReservations().remove(reservation.getChambre().getReservations().indexOf(reservation));
+                getReservations().remove(getReservations().indexOf(reservation));
+            }
         }
     }
 }
