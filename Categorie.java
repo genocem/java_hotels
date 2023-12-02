@@ -1,20 +1,28 @@
 public class Categorie {
     private boolean bain, douche, tele;
-    private int nombre_lits, prix;
+    private int nombre_lits;
+    private double prix;
 
-    public Categorie(boolean bain, boolean douche, boolean tele, int nombre_lits) {
-        this.bain = bain;
-        this.douche = douche;
-        this.tele = tele;
-        this.nombre_lits = nombre_lits;
-
+    public Categorie(boolean bain, boolean douche, boolean tele, int nombre_lits, double prix) {
+        try {
+            if (prix <= 0 || nombre_lits <= 0) {
+                throw new Anomalie(1);
+            }
+            this.bain = bain;
+            this.douche = douche;
+            this.tele = tele;
+            this.nombre_lits = nombre_lits;
+            this.prix = prix;
+        } catch (Anomalie e) {
+            System.out.println(e);
+        }
     }
 
-    public int getPrix() {
+    public double getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(double prix) {
         try {
             if (prix <= 0) {
                 throw new Anomalie(1);

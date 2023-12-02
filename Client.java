@@ -7,7 +7,7 @@ public class Client {
     private String nom;
     private String prenom;
     private Adresse adresse;
-    private List<Reservation> reservations;
+    private List<Reservation> reservations; 
     private List<Consommation> consommations;
 
     public Client(String nom, String prenom, Adresse adresse) {
@@ -134,4 +134,7 @@ public class Client {
         }
     }
     
+    public void ajouter_consommation(){
+        
+    }
 }
