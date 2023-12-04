@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ public class Client {
     private String nom;
     private String prenom;
     private Adresse adresse;
-    private List<Reservation> reservations; 
+    private List<Reservation> reservations;
     private List<Consommation> consommations;
 
     public Client(String nom, String prenom, Adresse adresse) {
@@ -133,8 +134,23 @@ public class Client {
             }
         }
     }
-    
-    public void ajouter_consommation(){
-        
+
+    public void ajouter_Service(String type, double prix, Date date, LocalTime heure, boolean isForfaitaire) {
+        consommations.add(new Service(type, prix, date, heure, isForfaitaire));
+    }
+
+    public void ajouter_Communication_telephonique(String type, double prix_minute, Date date, LocalTime heure,
+            int duree_minute,
+            String destination, double facteur_destination) {
+        consommations.add(new Communication_telephonique(type, prix_minute, date, heure, duree_minute,
+                destination, facteur_destination));
+    }
+
+    public void ajouter_MiniBar(String type, double prix, Date date, LocalTime heure, String nom_article) {
+        consommations.add(new MiniBar(type, prix, date, heure, nom_article));
+    }
+
+    public void ajouter_petit_dejeuner(String type, double prix, Date date, LocalTime heure, String category) {
+        consommations.add(new petit_dejeuner(type, prix, date, heure, category));
     }
 }
