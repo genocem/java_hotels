@@ -1,12 +1,12 @@
 import java.time.LocalTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Service extends Consommation {
     private boolean isForfaitaire;
 
 
 
-    public Service(String type, double prix, Date date, LocalTime heure, boolean isForfaitaire) {
+    public Service(String type, double prix, LocalDate date, LocalTime heure, boolean isForfaitaire) {
         super(type, prix, date, heure);
         this.isForfaitaire = isForfaitaire;
     }

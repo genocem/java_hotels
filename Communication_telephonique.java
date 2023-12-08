@@ -1,11 +1,11 @@
 import java.time.LocalTime;
-import java.util.Date;
+import java.time.LocalDate;
 
 class Communication_telephonique extends Consommation {
     private String destination;
     private double facteur_destination;
 
-    public Communication_telephonique(String type, double prix_minute, Date date, LocalTime heure, int duree_minute,
+    public Communication_telephonique(String type, double prix_minute, LocalDate date, LocalTime heure, int duree_minute,
             String destination, double facteur_destination) {
         super(type, prix_minute * facteur_destination, date, heure, duree_minute);
         this.destination = destination;

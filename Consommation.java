@@ -1,14 +1,14 @@
-import java.util.Date;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 class Consommation {
     private String type;
     private double prix;
-    private Date date;
+    private LocalDate date;
     private LocalTime heure;
     private int quantite;
 
-    public Consommation(String type, double prix, Date date, LocalTime heure) {
+    public Consommation(String type, double prix, LocalDate date, LocalTime heure) {
         try {
             if (prix <= 0) {
                 throw new Anomalie(1);
@@ -23,7 +23,7 @@ class Consommation {
         }
     }
 
-    public Consommation(String type, double prix, Date date, LocalTime heure, int quantite) {
+    public Consommation(String type, double prix, LocalDate date, LocalTime heure, int quantite) {
         try {
             if (prix <= 0 || quantite <= 0) {
                 throw new Anomalie(1);
@@ -62,11 +62,11 @@ class Consommation {
         }
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

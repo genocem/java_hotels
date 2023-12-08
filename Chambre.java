@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Chambre {
     private int num_ch;
@@ -6,7 +7,7 @@ public class Chambre {
     private Categorie categorie;
     private boolean occuper = false;
     private int etage;
-    private List<Reservation> reservations;     
+    private List<Reservation> reservations = new ArrayList<Reservation>(); 
 
 
     public Chambre(Categorie categorie, int etage) {
@@ -55,4 +56,5 @@ public class Chambre {
     public void inserer_res(int index,Reservation nouv_res){
         reservations.add(index,nouv_res);
     }
+    
 }

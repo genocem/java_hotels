@@ -1,4 +1,5 @@
 public class Categorie {
+    private static int num_categ=0;
     private boolean bain, douche, tele;
     private int nombre_lits;
     private double prix;
@@ -8,6 +9,7 @@ public class Categorie {
             if (prix <= 0 || nombre_lits <= 0) {
                 throw new Anomalie(1);
             }
+            num_categ++;
             this.bain = bain;
             this.douche = douche;
             this.tele = tele;
@@ -20,6 +22,10 @@ public class Categorie {
 
     public double getPrix() {
         return prix;
+    }
+
+    public int getNum_categ() {
+        return num_categ;
     }
 
     public void setPrix(double prix) {

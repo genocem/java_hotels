@@ -1,15 +1,15 @@
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Reservation {
     private static int num_res_total=0;
     private int num_res;
-    private Date date_res;
-    private Date deb_res;
-    private Date fin_res;
+    private LocalDate date_res;
+    private LocalDate deb_res;
+    private LocalDate fin_res;
     private Chambre chambre;
     private Client client;
 
-    public Reservation(Date date_res, Date deb_res, Date fin_res, Chambre chambre, Client client) {
+    public Reservation(LocalDate date_res, LocalDate deb_res, LocalDate fin_res, Chambre chambre, Client client) {
         try {
             if (deb_res.compareTo(fin_res)>0) {
                 throw new Anomalie(3);
@@ -30,15 +30,15 @@ public class Reservation {
         }
     }
 
-    public Date getDeb_res() {
+    public LocalDate getDeb_res() {
         return deb_res;
     }
 
-    public void setDeb_res(Date deb_res) {
+    public void setDeb_res(LocalDate deb_res) {
         this.deb_res = deb_res;
     }
 
-    public Date getFin_res() {
+    public LocalDate getFin_res() {
         return fin_res;
     }
 
@@ -54,7 +54,7 @@ public class Reservation {
         return num_res_total;
     }
 
-    public Date getDate_res() {
+    public LocalDate getDate_res() {
         return date_res;
     }
 
@@ -65,7 +65,7 @@ public class Reservation {
     public void setClient(Client client) {
         this.client = client;
     }
-    public boolean deja_reserve(Date resDate){
+    public boolean deja_reserve(LocalDate resDate){
             if(resDate.compareTo(deb_res)>=0 && resDate.compareTo(fin_res)<=0)
                 return true;
             return false;   

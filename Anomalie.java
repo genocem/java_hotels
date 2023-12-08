@@ -1,17 +1,27 @@
-public class Anomalie extends Exception{
-    public Anomalie(int choix){
+public class Anomalie extends Exception {
+    String message = "Exception!!: ";
+
+    public Anomalie(int choix) { // int choix =>String message
+        // super(message);
         switch (choix) {
             case 0:
-                System.out.println("Deja reservée !");
+                message += "Deja reservée !\n";
                 break;
             case 1:
-                System.out.println("Il faut que le nombre soit positive!");
+                message += "Il faut que le nombre soit positive!\n";
                 break;
             case 2:
-                System.out.println("Date donné invalide");
+                message += "Date donné invalide\n";
+                break;
+            case 3:
+                message += "date de fin doit etre apres la date de debut\n";
                 break;
             default:
                 break;
         }
+    }
+
+    public String toString() {
+        return message;
     }
 }
