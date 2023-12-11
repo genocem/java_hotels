@@ -9,7 +9,7 @@ public class Organisme {
         hotel_list = new ArrayList<Hotel>();
     }
 
-    public void ajouter_hotel_unique(Hotel hotel) {
+    public void ajouter_hotel(Hotel hotel) {
         //on va ajouter un hotel ou son nom n'existe pas deja
         for (int i = 0; i < hotel_list.size(); i++) {
             if (hotel_list.get(i).getNom().equals(hotel.getNom())) {
