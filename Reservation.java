@@ -65,6 +65,7 @@ public class Reservation {
     public void setClient(Client client) {
         this.client = client;
     }
+    
     public boolean deja_reserve(LocalDate resDate){
             if(resDate.compareTo(deb_res)>=0 && resDate.compareTo(fin_res)<=0)
                 return true;

@@ -4,20 +4,23 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 public class Organisme {
     List<Hotel> hotel_list;
-    List<Client> client_list;
 
     Organisme() {
         hotel_list = new ArrayList<Hotel>();
-        client_list = new ArrayList<Client>();
     }
 
-    public void ajouter_hotel(Hotel hotel) {
+    public void ajouter_hotel_unique(Hotel hotel) {
+        //on va ajouter un hotel ou son nom n'existe pas deja
+        for (int i = 0; i < hotel_list.size(); i++) {
+            if (hotel_list.get(i).getNom().equals(hotel.getNom())) {
+                System.out.println("hotel deja existant");
+                return;
+            }
+        }
         hotel_list.add(hotel);
     }
 
-    public void ajouter_client(Client client) {
-        client_list.add(client);
-    }
+
 
     public void afficher_hotel() {
         System.out.println("liste des hotels:\n");
