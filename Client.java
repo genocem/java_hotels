@@ -342,7 +342,7 @@ public class Client {
                     ajouter_petit_dejeuner(type, prix, date, heure1, category);
                     break;
                 case 8:
-                    System.out.println("la facture est de " + get_facture());
+                    System.out.println("la facture de "+getNom()+""+getPrenom()+ "est de " + get_facture()+"a l'adresse"+adresse);
                     break;
                 default:
                     System.out.println("numero invalide");

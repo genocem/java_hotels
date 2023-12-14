@@ -115,32 +115,50 @@ public class Hotel {
                     do {
                         System.out.println("il y a un baingnouire? O/N");
                         bain = sc.next();
-                    } while (!(bain.equals("O") || bain.equals("N")));
+                    } while (!(bain.equals("O") || bain.equals("N") || bain.equals("o") || bain.equals("n")) );
                     String douche;
                     do {
                         System.out.println("il y a une douche? O/N");
                         douche = sc.next();
-                    } while (!(douche.equals("O") || douche.equals("N")));
+                    } while (!(douche.equals("O") || douche.equals("N") || douche.equals("o") || douche.equals("n")));
                     String tele;
                     do {
                         System.out.println("il y a une tele? O/N");
                         tele = sc.next();
-                    } while (!(tele.equals("O") || tele.equals("N")));
+                    } while (!(tele.equals("O") || tele.equals("N") || tele.equals("o") || tele.equals("n")));
                     int nombre_lits;
                     do {
                         System.out.println("entrer le nombre de lits");
-                        nombre_lits = sc.nextInt();
+                        nombre_lits = 1;
+                        try {
+                            nombre_lits = sc.nextInt();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input. vous devez entrer un nombre.");
+                            continue;
+                        }
                     } while (nombre_lits <= 0);
                     double prix;
                     do {
                         System.out.println("entrer le prix");
-                        prix = sc.nextDouble();
+                        prix = 1;
+                        try {
+                            prix = sc.nextDouble();
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input. vous devez entrer un nombre.");
+                            continue;
+                        }
                     } while (prix <= 0);
-                    Categorie categ = new Categorie(bain.equals("O"), douche.equals("O"), tele.equals("O"), nombre_lits,
+                    Categorie categ = new Categorie(bain.equals("O") || bain.equals("o"), douche.equals("O") || douche.equals("o"), tele.equals("O") || tele.equals("o"), nombre_lits,
                             prix);
 
                     System.out.println("entrer l'etage");
-                    int etage = sc.nextInt();
+                    int etage = 0;
+                    try {
+                        etage = sc.nextInt();
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. vous devez entrer un nombre.");
+                        continue;
+                    }
                     ajouter_chambre(categ, etage);
                     break;
                 case 2:
@@ -176,7 +194,13 @@ public class Hotel {
             }
             System.out.println("0-retour");
             Scanner sc = new Scanner(System.in);
-            int choix = sc.nextInt();
+            int choix = 0;
+            try {
+                sc.nextInt();
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. vous devez entrer un nombre.");
+                continue;
+            }
             if (choix == 0) {
                 return;
             }
